@@ -5,8 +5,8 @@ fn main() {
     //println!("{s}");
     //print!("mutables : ");
     //mutables();
-    let mut s = String::from("hello");
-    let new_s = slice_str(s);
+    let s = String::from("hello world");
+    let new_s = slice_str(&s);
     println!("{new_s}");
 }
 
@@ -25,16 +25,24 @@ fn mutables() {
     println!("{r1}, {r2}");
 }
 
-fn slice_str(s: String) -> String {
-    let mut res = Vec::new();
+fn slice_str(s: &String) -> &str {
+    //let mut res = Vec::new();
 
-    for char in s.chars() {
-        if char == ' ' {
-            break;
-        } else {
-            res.push(char);
+    //for char in s.chars() {
+    //    if char == ' ' {
+    //        break;
+    //    } else {
+    //        res.push(char);
+    //    }
+    //}
+
+    //res.iter().collect::<String>()
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[..i];
         }
     }
-
-    res.iter().collect::<String>()
+    &s[..]
 }
