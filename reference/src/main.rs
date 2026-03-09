@@ -7,7 +7,9 @@ fn main() {
     //mutables();
     let s = String::from("hello world");
     let new_s = slice_str(&s);
-    println!("{new_s}");
+    let second = second_word(&s);
+    println!("first word: {new_s}");
+    println!("second word: {second}");
 }
 
 
@@ -45,4 +47,16 @@ fn slice_str(s: &String) -> &str {
         }
     }
     &s[..]
+}
+
+fn second_word(s: &String) -> &str {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return &s[i + 1..];
+        }
+    }
+    &s[..]
+ 
 }
