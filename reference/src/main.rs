@@ -49,7 +49,7 @@ fn slice_str(s: &String) -> &str {
     &s[..]
 }
 
-fn second_word(s: &String) -> &str {
+fn second_word(s: &str) -> &str {
     let bytes = s.as_bytes();
 
     for (i, &item) in bytes.iter().enumerate() {
